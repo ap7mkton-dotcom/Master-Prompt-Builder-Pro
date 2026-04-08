@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SW Climate Hero – Save the Planet Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #39FF14;
+  --blue: #1a3a6e;
+  --navy: #0d1f3c;
+  --silver: #c0cfe0;
+  --fire: #ff6b00;
+  --gold: #f0c040;
+  --white: #f4f8ff;
+  --dark: #07111f;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background: var(--dark);
+  color: var(--white);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Custom cursor */
+.cursor {
+  width: 18px; height: 18px;
+  border: 2px solid var(--green);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform .1s ease, background .2s;
+  mix-blend-mode: screen;
+}
+.cursor.click { transform: translate(-50%,-50%) scale(2.2); background: rgba(57,255,20,.3); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 60% 40%, #1a3a6e 0%, #07111f 70%);
+}
+
+.stars {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.9) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,.7) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 50% 60%, rgba(57,255,20,.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 70%, rgba(255,255,255,.8) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 35% 20%, rgba(192,207,224,.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 85%, rgba(255,255,255,.5) 0%, transparent 100%);
+  animation: twinkle 4s infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: .7; }
+  100% { opacity: 1; }
+}
+
+.hero-bg-glow {
+  position: absolute;
+  bottom: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px; height: 400px;
+  background: radial-gradient(ellipse, rgba(57,255,20,.12) 0%, transparent 70%);
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%,100% { opacity: .6; transform: translateX(-50%) scaleX(1); }
+  50% { opacity: 1; transform: translateX(-50%) scaleX(1.1); }
+}
+
+.fire-bottom {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 120px;
+  background: linear-gradient(to top, rgba(255,107,0,.35), transparent);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  animation: hero-in 1s ease both;
+}
+
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-badge {
+  display: inline-block;
+  border: 1.5px solid var(--green);
+  color: var(--green);
+  font-family: 'Space Mono', monospace;
+  font-size: .75rem;
+  letter-spacing: .2em;
+  padding: .35em 1.2em;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  animation: badge-flash 2s infinite;
+}
+
+@keyframes badge-flash {
+  0%,100% { box-shadow: 0 0 8px var(--green); }
+  50% { box-shadow: 0 0 24px var(--green), 0 0 48px rgba(57,255,20,.3); }
+}
+
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  line-height: .9;
+  letter-spacing: .02em;
+  color: var(--white);
+  text-shadow: 0 0 40px rgba(57,255,20,.4);
+}
+
+.hero h1 span.sw {
+  color: var(--green);
+  -webkit-text-stroke: 2px var(--green);
+  text-shadow: 0 0 30px var(--green), 0 0 80px rgba(57,255,20,.5);
+}
+
+.hero h1 span.fire-text {
+  color: var(--fire);
+  -webkit-text-stroke: 1px #ff8c42;
+  text-shadow: 0 0 30px var(--fire), 0 0 60px rgba(255,107,0,.4);
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--silver);
+  margin: 1rem 0 2.5rem;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .8rem;
+  background: var(--green);
+  color: var(--dark);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: .1em;
+  padding: .9em 2.4em;
+  text-decoration: none;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.35) 50%, transparent 100%);
+  transform: translateX(-100%);
+  transition: transform .5s;
+}
+
+.hero-cta:hover::before { transform: translateX(100%); }
+.hero-cta:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(57,255,20,.6); }
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  color: rgba(255,255,255,.4);
+  font-family: 'Space Mono', monospace;
+  font-size: .65rem;
+  letter-spacing: .15em;
+  animation: bounce 2s infinite;
+}
+
+.scroll-indicator::after {
+  content: '';
+  display: block;
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--green), transparent);
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2.5rem;
+  background: rgba(7,17,31,.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(57,255,20,.15);
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: .08em;
+}
+
+.nav-logo span { color: var(--green); }
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Space Mono', monospace;
+  font-size: .78rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--silver);
+  text-decoration: none;
+  transition: color .2s;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--green);
+  transition: width .3s;
+}
+
+.nav-links a:hover { color: var(--green); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cart {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  background: transparent;
+  border: 1.5px solid var(--green);
+  color: var(--green);
+  font-family: 'Space Mono', monospace;
+  font-size: .75rem;
+  letter-spacing: .1em;
+  padding: .5em 1.2em;
+  cursor: none;
+  transition: all .2s;
+}
+
+.nav-cart:hover { background: var(--green); color: var(--dark); }
+
+/* ── MISSION TICKER ── */
+.ticker-wrap {
+  background: var(--green);
+  overflow: hidden;
+  padding: .55rem 0;
+}
+
+.ticker {
+  display: flex;
+  gap: 3rem;
+  white-space: nowrap;
+  animation: ticker 20s linear infinite;
+}
+
+.ticker span {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: .12em;
+  color: var(--dark);
+  flex-shrink: 0;
+}
+
+.ticker span::before {
+  content: '⚡ ';
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ── MISSION SECTION ── */
+.mission {
+  padding: 7rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.mission::before {
+  content: '';
+  position: absolute;
+  top: 0; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(57,255,20,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.section-label {
+  font-family: 'Space Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 1rem;
+}
+
+.mission-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.mission-text h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 5vw, 5.5rem);
+  line-height: .95;
+  margin-bottom: 1.8rem;
+  color: var(--white);
+}
+
+.mission-text h2 em {
+  color: var(--green);
+  font-style: normal;
+}
+
+.mission-text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--silver);
+  margin-bottom: 1.2rem;
+}
+
+.stats-row {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.stat {
+  border-left: 3px solid var(--green);
+  padding-left: 1rem;
+}
+
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  color: var(--green);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: .85rem;
+  color: var(--silver);
+  letter-spacing: .08em;
+}
+
+.mission-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.planet-card {
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 40%, #3a8fd4, #1a3a6e 50%, #0d1f3c);
+  border: 2px solid rgba(57,255,20,.3);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(57,255,20,.15), inset 0 0 40px rgba(0,0,0,.5);
+  animation: planet-spin 20s linear infinite;
+}
+
+@keyframes planet-spin {
+  from { box-shadow: 0 0 60px rgba(57,255,20,.15), 0 0 0 rgba(255,107,0,0); }
+  50% { box-shadow: 0 0 80px rgba(57,255,20,.25), 0 0 40px rgba(255,107,0,.08); }
+  to { box-shadow: 0 0 60px rgba(57,255,20,.15), 0 0 0 rgba(255,107,0,0); }
+}
+
+.planet-card::after {
+  content: '🌍';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8rem;
+  filter: drop-shadow(0 0 20px rgba(57,255,20,.5));
+}
+
+.planet-ring {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  border: 1px solid rgba(57,255,20,.2);
+  animation: ring-pulse 2.5s ease infinite;
+}
+
+.planet-ring:nth-child(2) { inset: -40px; animation-delay: .5s; }
+.planet-ring:nth-child(3) { inset: -65px; animation-delay: 1s; }
+
+@keyframes ring-pulse {
+  0%,100% { opacity: .3; transform: scale(1); }
+  50% { opacity: .7; transform: scale(1.02); }
+}
+
+/* ── PRODUCTS ── */
+.products {
+  padding: 6rem 2rem;
+  background: linear-gradient(to bottom, var(--dark), #0d1f3c, var(--dark));
+  position: relative;
+}
+
+.products::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--green), transparent);
+}
+
+.section-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 4rem;
+}
+
+.section-header h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  color: var(--white);
+  margin-bottom: .8rem;
+}
+
+.section-header h2 span { color: var(--green); }
+
+.section-header p {
+  color: var(--silver);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  font-family: 'Space Mono', monospace;
+  font-size: .72rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1.5px solid rgba(57,255,20,.3);
+  color: var(--silver);
+  padding: .5em 1.5em;
+  cursor: none;
+  transition: all .25s;
+}
+
+.filter-btn.active, .filter-btn:hover {
+  border-color: var(--green);
+  color: var(--green);
+  background: rgba(57,255,20,.08);
+}
+
+.products-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.product-card {
+  background: linear-gradient(145deg, rgba(26,58,110,.6), rgba(13,31,60,.9));
+  border: 1px solid rgba(57,255,20,.12);
+  position: relative;
+  overflow: hidden;
+  transition: all .35s;
+  cursor: none;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--green);
+  box-shadow: 0 20px 60px rgba(57,255,20,.15);
+}
+
+.product-card:hover .product-img-wrap::after {
+  opacity: 1;
+}
+
+.product-badge {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: var(--fire);
+  color: var(--white);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: .95rem;
+  letter-spacing: .1em;
+  padding: .2em .8em;
+  z-index: 2;
+}
+
+.product-badge.green { background: var(--green); color: var(--dark); }
+
+.product-img-wrap {
+  width: 100%;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, rgba(57,255,20,.05), transparent 70%);
+  position: relative;
+  overflow: hidden;
+}
+
+.product-img-wrap::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(57,255,20,.12), transparent);
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.product-emoji {
+  font-size: 5.5rem;
+  filter: drop-shadow(0 4px 20px rgba(57,255,20,.3));
+  transition: transform .3s;
+  position: relative; z-index: 1;
+}
+
+.product-card:hover .product-emoji { transform: scale(1.15) rotate(-3deg); }
+
+.product-info {
+  padding: 1.4rem;
+  border-top: 1px solid rgba(57,255,20,.1);
+}
+
+.product-slogan {
+  font-family: 'Space Mono', monospace;
+  font-size: .65rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: .5rem;
+}
+
+.product-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: .05em;
+  color: var(--white);
+  margin-bottom: .4rem;
+}
+
+.product-desc {
+  font-size: .88rem;
+  color: var(--silver);
+  line-height: 1.5;
+  margin-bottom: 1.2rem;
+}
+
+.product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  color: var(--green);
+}
+
+.product-price span {
+  font-size: 1rem;
+  color: var(--silver);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 400;
+  text-decoration: line-through;
+  margin-left: .4rem;
+}
+
+.add-btn {
+  background: transparent;
+  border: 1.5px solid var(--green);
+  color: var(--green);
+  font-family: 'Space Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .55em 1.2em;
+  cursor: none;
+  transition: all .25s;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+
+.add-btn:hover {
+  background: var(--green);
+  color: var(--dark);
+}
+
+/* ── IMPACT SECTION ── */
+.impact {
+  padding: 6rem 2rem;
+  position: relative;
+  background: var(--navy);
+  overflow: hidden;
+}
+
+.impact::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, rgba(57,255,20,.03) 0, rgba(57,255,20,.03) 1px, transparent 1px, transparent 60px),
+    repeating-linear-gradient(90deg, rgba(57,255,20,.03) 0, rgba(57,255,20,.03) 1px, transparent 1px, transparent 60px);
+}
+
+.impact-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.impact-inner h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  text-align: center;
+  margin-bottom: 3.5rem;
+  color: var(--white);
+}
+
+.impact-inner h2 span { color: var(--green); }
+
+.impact-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.impact-card {
+  background: rgba(7,17,31,.8);
+  border: 1px solid rgba(57,255,20,.15);
+  padding: 2rem 1.8rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .3s;
+}
+
+.impact-card:hover { border-color: rgba(57,255,20,.5); }
+
+.impact-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--green);
+  transition: height .4s;
+}
+
+.impact-card:hover::before { height: 100%; }
+
+.impact-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+
+.impact-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: .06em;
+  color: var(--white);
+  margin-bottom: .6rem;
+}
+
+.impact-card p {
+  font-size: .95rem;
+  color: var(--silver);
+  line-height: 1.6;
+}
+
+.impact-pct {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.5rem;
+  color: var(--green);
+  line-height: 1;
+  margin-bottom: .3rem;
+}
+
+/* ── URGENCY BANNER ── */
+.urgency {
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, rgba(255,107,0,.15), rgba(13,31,60,.9) 60%);
+  border-top: 1px solid rgba(255,107,0,.3);
+  border-bottom: 1px solid rgba(255,107,0,.3);
+  text-align: center;
+}
+
+.urgency h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 6rem);
+  color: var(--white);
+  line-height: .9;
+  margin-bottom: 1rem;
+}
+
+.urgency h2 .fire { color: var(--fire); text-shadow: 0 0 30px var(--fire); }
+.urgency h2 .now { color: var(--green); text-shadow: 0 0 30px var(--green); }
+
+.urgency p {
+  font-size: 1.15rem;
+  color: var(--silver);
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.6;
+}
+
+/* ── TESTIMONIALS ── */
+.testimonials {
+  padding: 6rem 2rem;
+  background: var(--dark);
+}
+
+.testimonials-grid {
+  max-width: 1000px;
+  margin: 3.5rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.testimonial {
+  background: linear-gradient(145deg, rgba(26,58,110,.4), rgba(13,31,60,.7));
+  border: 1px solid rgba(57,255,20,.1);
+  padding: 2rem;
+}
+
+.stars-rating { color: var(--gold); margin-bottom: .8rem; letter-spacing: .1em; }
+
+.testimonial p {
+  font-size: .95rem;
+  color: var(--silver);
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+  font-style: italic;
+}
+
+.testimonial-author {
+  font-family: 'Space Mono', monospace;
+  font-size: .72rem;
+  letter-spacing: .15em;
+  color: var(--green);
+  text-transform: uppercase;
+}
+
+/* ── NEWSLETTER ── */
+.newsletter {
+  padding: 6rem 2rem;
+  background: radial-gradient(ellipse at center, rgba(26,58,110,.8), var(--dark));
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter::before {
+  content: 'SW';
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30vw;
+  color: rgba(57,255,20,.025);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  line-height: 1;
+}
+
+.newsletter h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4vw, 4rem);
+  color: var(--white);
+  margin-bottom: .8rem;
+}
+
+.newsletter p {
+  color: var(--silver);
+  margin-bottom: 2rem;
+}
+
+.nl-form {
+  display: flex;
+  gap: 0;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.nl-input {
+  flex: 1;
+  background: rgba(255,255,255,.06);
+  border: 1.5px solid rgba(57,255,20,.3);
+  border-right: none;
+  color: var(--white);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  padding: .8em 1.2em;
+  outline: none;
+  transition: border-color .2s;
+}
+
+.nl-input:focus { border-color: var(--green); }
+.nl-input::placeholder { color: rgba(255,255,255,.3); }
+
+.nl-btn {
+  background: var(--green);
+  border: 1.5px solid var(--green);
+  color: var(--dark);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: .1em;
+  padding: .8em 1.8em;
+  cursor: none;
+  transition: all .2s;
+}
+
+.nl-btn:hover { background: #2de00f; }
+
+/* ── FOOTER ── */
+footer {
+  background: #050e1c;
+  border-top: 1px solid rgba(57,255,20,.12);
+  padding: 3rem 2rem 1.5rem;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 2.5rem;
+}
+
+.footer-brand h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  color: var(--white);
+  margin-bottom: .6rem;
+}
+
+.footer-brand h3 span { color: var(--green); }
+
+.footer-brand p {
+  color: var(--silver);
+  font-size: .9rem;
+  line-height: 1.6;
+}
+
+.footer-col h4 {
+  font-family: 'Space Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 1rem;
+}
+
+.footer-col a {
+  display: block;
+  color: var(--silver);
+  text-decoration: none;
+  font-size: .92rem;
+  margin-bottom: .5rem;
+  transition: color .2s;
+}
+
+.footer-col a:hover { color: var(--green); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.06);
+  padding-top: 1.5rem;
+  text-align: center;
+  color: rgba(255,255,255,.3);
+  font-family: 'Space Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: .1em;
+}
+
+/* ── TOAST ── */
+.toast {
+  position: fixed;
+  bottom: 2rem; right: 2rem;
+  background: var(--green);
+  color: var(--dark);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: .1em;
+  padding: .8em 1.8em;
+  z-index: 1000;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all .4s cubic-bezier(.34,1.56,.64,1);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+.toast.show { transform: translateY(0); opacity: 1; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .mission-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .impact-cards { grid-template-columns: 1fr 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .planet-card { width: 220px; height: 220px; }
+  .planet-card::after { font-size: 5rem; }
+}
+
+@media (max-width: 600px) {
+  .impact-cards { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .stats-row { flex-direction: column; gap: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ IN DEN WARENKORB!</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo"><span>SW</span> CLIMATE HERO</a>
+  <ul class="nav-links">
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#story">Story</a></li>
+  </ul>
+  <button class="nav-cart" onclick="showToast('Warenkorb öffnet...')">🛒 Warenkorb (0)</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="stars"></div>
+  <div class="hero-bg-glow"></div>
+  <div class="fire-bottom"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">⚡ Die Erde braucht Helden ⚡</div>
+    <h1>
+      <span class="sw">SW</span><br>
+      CLIMATE<br>
+      <span class="fire-text">HERO</span>
+    </h1>
+    <p class="hero-sub">Trage deine Botschaft. Rette den Planeten.</p>
+    <a href="#shop" class="hero-cta">🛍️ Shop jetzt</a>
+  </div>
+
+  <div class="scroll-indicator">SCROLL</div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span>SAVE THE PLANET</span>
+    <span>STOP GLOBAL WARMING</span>
+    <span>ACT NOW</span>
+    <span>TIME IS RUNNING OUT</span>
+    <span>BE THE HERO</span>
+    <span>SAVE THE PLANET</span>
+    <span>STOP GLOBAL WARMING</span>
+    <span>ACT NOW</span>
+    <span>TIME IS RUNNING OUT</span>
+    <span>BE THE HERO</span>
+    <span>SAVE THE PLANET</span>
+    <span>STOP GLOBAL WARMING</span>
+    <span>ACT NOW</span>
+    <span>TIME IS RUNNING OUT</span>
+    <span>BE THE HERO</span>
+  </div>
+</div>
+
+<!-- MISSION -->
+<section class="mission" id="mission">
+  <div class="mission-grid">
+    <div class="mission-text">
+      <div class="section-label">// Die Mission</div>
+      <h2>Die <em>Zeit</em> läuft ab.<br>Wir handeln <em>jetzt.</em></h2>
+      <p>SW steht für <strong style="color:var(--white)">Save the World</strong> – und du kannst Teil dieser Bewegung sein. Jedes Gadget, das du trägst, wird zur fliegenden Botschaft: Klima­wandel stoppen, Bewusstsein schaffen, Veränderung vorantreiben.</p>
+      <p>10% jedes Kaufs fließt direkt in globale Klimaschutz­projekte. Dein Style. Deine Haltung. Dein Impact.</p>
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-num">10%</div>
+          <div class="stat-label">Erlös für Klima­projekte</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1.2°C</div>
+          <div class="stat-label">Schon erwärmt seit 1850</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">NOW</div>
+          <div class="stat-label">Kein Warten mehr</div>
+        </div>
+      </div>
+    </div>
+    <div class="mission-visual">
+      <div class="planet-ring"></div>
+      <div class="planet-ring"></div>
+      <div class="planet-ring"></div>
+      <div class="planet-card"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="shop">
+  <div class="section-header">
+    <div class="section-label">// SW Kollektion</div>
+    <h2>Trage die <span>Revolution</span></h2>
+    <p>Jedes Produkt ist deine Stimme gegen die Klimakrise – auf der Straße, im Büro, überall auf der Welt.</p>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active">Alle</button>
+    <button class="filter-btn">Kleidung</button>
+    <button class="filter-btn">Accessoires</button>
+    <button class="filter-btn">Küche</button>
+    <button class="filter-btn">Tech</button>
+  </div>
+
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-badge green">Bestseller</div>
+      <div class="product-img-wrap"><div class="product-emoji">👕</div></div>
+      <div class="product-info">
+        <div class="product-slogan">SAVE THE PLANET</div>
+        <div class="product-name">Hero T-Shirt</div>
+        <div class="product-desc">Organic Cotton. SW-Logo auf der Brust, „Stop Global Warming" auf dem Rücken.</div>
+        <div class="product-footer">
+          <div class="product-price">€29 <span>€39</span></div>
+          <button class="add-btn" onclick="addCart()">+ Kaufen</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-badge">Neu</div>
+      <div class="product-img-wrap"><div class="product-emoji">🧣</div></div>
+      <div class="product-info">
+        <div class="product-slogan">ACT NOW</div>
+        <div class="product-name">Hero Hoodie</div>
+        <div class="product-desc">Recyceltes Fleece. Grün-blauer Streifen, glühender SW-Patch.</div>
+        <div class="product-footer">
+          <div class="product-price">€54</div>
+          <button class="add-btn" onclick="addCart()">+ Kaufen</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap"><div class="product-emoji">🎒</div></div>
+      <div class="product-info">
+        <div class="product-slogan">TIME IS RUNNING OUT</div>
+        <div class="product-name">Eco Rucksack</div>
+        <div class="product-desc">Aus recycelten PET-Flaschen. Klimabotschaft auf der Vordertasche.</div>
+        <div class="product-footer">
+          <div class="product-price">€47</div>
+          <button class="add-btn" onclick="addCart()">+ Kaufen</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-badge green">Klimaheld</div>
+      <div class="product-img-wrap"><div class="product-emoji">☕</div></div>
+      <div class="product-info">
+        <div class="product-slogan">SAVE THE WORLD</div>
+        <div class="product-name">Thermo-Becher</div>
+        <div class="product-desc">500ml, doppelwandig, BPA-frei. „Act Now" Gravur. Kein Einwegplastik mehr!</div>
+        <div class="product-footer">
+          <div class="product-price">€32</div>
+          <button class="add-btn" onclick="addCart()">+ Kaufen</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap"><div class="product-emoji">📱</div></div>
+      <div class="product-info">
+        <div class="product-slogan">STOP WARMING</div>
+        <div class="product-name">Handyhülle</div>
+        <div class="product-desc">Für iPhone & Samsung. SW-Superheld-Print, stoßfestes Bioplastik.</div>
+        <div class="product-footer">
+          <div class="product-price">€19</div>
+          <button class="add-btn" onclick="addCart()">+ Kaufen</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-badge">Limited</div>
+      <div class="product-img-wrap"><div class="product-emoji">🛍️</div></div>
+      <div class="product-info">
+        <div class="product-slogan">BE THE CHANGE</div>
+        <div class="product-name">Canvas Tote</div>
+        <div class="product-desc">100% Baumwolle. Riesiges „Save Me The Planet!" Print – unübersehbar.</div>
+        <div class="product-footer">
+          <div class="product-price">€16</div>
+          <button class="add-btn" onclick="addCart()">+ Kaufen</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img-wrap"><div class="product-emoji">🧢</div></div>
+      <div class="product-info">
+        <div class="product-slogan">ACT NOW</div>
+        <div class="product-name">Climate Cap</div>
+        <div class="product-desc">Strukturiertes Snapback-Cap mit SW-Stickerei und Klimastreik-Patch.</div>
+        <div class="product-footer">
+          <div class="product-price">€24</div>
+          <button class="add-btn" onclick="addCart()">+ Kaufen</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-badge green">Eco ♻️</div>
+      <div class="product-img-wrap"><div class="product-emoji">🍶</div></div>
+      <div class="product-info">
+        <div class="product-slogan">NO PLASTIC PLANET</div>
+        <div class="product-name">Edelstahl-Flasche</div>
+        <div class="product-desc">750ml, auslaufsicher. Erde-Motiv mit Flammen. Gemeinsam gegen Plastik!</div>
+        <div class="product-footer">
+          <div class="product-price">€28</div>
+          <button class="add-btn" onclick="addCart()">+ Kaufen</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- URGENCY -->
+<section class="urgency">
+  <h2>
+    <span class="fire">FEUER</span> AM HORIZONT.<br>
+    HANDL JETZT <span class="now">– JETZT!</span>
+  </h2>
+  <p>Die Erde erwärmt sich jedes Jahr schneller. Jeder Tag ohne Handlung ist ein Tag zu viel. Trag die Botschaft hinaus – sei der SW-Held, den die Welt braucht.</p>
+  <a href="#shop" class="hero-cta">🌍 Kollektion entdecken</a>
+</section>
+
+<!-- IMPACT -->
+<section class="impact" id="impact">
+  <div class="impact-inner">
+    <h2>Dein Kauf. <span>Echter Impact.</span></h2>
+    <div class="impact-cards">
+
+      <div class="impact-card">
+        <div class="impact-pct">10%</div>
+        <h3>Klimafonds</h3>
+        <p>Jeder Einkauf fließt direkt in zertifizierte Aufforstungs- und Erneuerbare-Energie-Projekte weltweit.</p>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-icon">♻️</div>
+        <h3>Recycelte Materialien</h3>
+        <p>Alle Produkte aus nachhaltigen Quellen: Bio-Baumwolle, recyceltes PET, biobasierte Kunststoffe.</p>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-icon">📢</div>
+        <h3>Botschaft verbreiten</h3>
+        <p>Du trägst eine lebende Klimawarnungskampagne. Jede Straße, jedes Büro – dein Outfit spricht.</p>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-pct">CO₂</div>
+        <h3>Neutral Versand</h3>
+        <p>Jede Lieferung wird vollständig CO₂-kompensiert. Lieferung ohne schlechtes Gewissen.</p>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-icon">🌱</div>
+        <h3>1 Baum pro Bestellung</h3>
+        <p>Mit jeder Bestellung pflanzen wir einen Baum mit unserem Reforestation-Partner Trees for the Future.</p>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-icon">🤝</div>
+        <h3>Community Power</h3>
+        <p>Werde Teil der SW-Bewegung: Tausende Helden weltweit, eine gemeinsame Mission – den Planeten retten.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="story">
+  <div class="section-header">
+    <div class="section-label">// Stimmen der Helden</div>
+    <h2>Die <span>Community</span> spricht</h2>
+  </div>
+  <div class="testimonials-grid">
+
+    <div class="testimonial">
+      <div class="stars-rating">★★★★★</div>
+      <p>„Das T-Shirt bekommt überall Komplimente – und öffnet echte Gespräche über den Klimawandel. Genau das wollte ich."</p>
+      <div class="testimonial-author">— Mia K., Berlin</div>
+    </div>
+
+    <div class="testimonial">
+      <div class="stars-rating">★★★★★</div>
+      <p>„Der Thermo-Becher ist mein täglicher Protest gegen Einwegplastik. Hält 12h heiß, sieht toll aus."</p>
+      <div class="testimonial-author">— Tobias R., München</div>
+    </div>
+
+    <div class="testimonial">
+      <div class="stars-rating">★★★★☆</div>
+      <p>„Lieferung war schnell, Qualität top. Stolz, Teil dieser Bewegung zu sein. Der Hoodie ist mein Lieblingsstück!"</p>
+      <div class="testimonial-author">— Ines V., Hamburg</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="section-label">// Bleib informiert</div>
+  <h2>Werde SW-Held</h2>
+  <p>Neue Produkte, Klimanews & exklusive Rabatte für echte Helden. Kein Spam. Nur Action.</p>
+  <div class="nl-form">
+    <input class="nl-input" type="email" placeholder="deine@email.de">
+    <button class="nl-btn" onclick="showToast('Willkommen, Held! ⚡')">AKTIVIEREN</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3><span>SW</span> Climate Hero</h3>
+      <p>Mode mit Botschaft. Jeder Kauf ist ein Schritt in die richtige Richtung. Werde Teil der Bewegung, die die Welt rettet.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="#">T-Shirts</a>
+      <a href="#">Hoodies</a>
+      <a href="#">Accessoires</a>
+      <a href="#">Taschen</a>
+      <a href="#">Becher & Flaschen</a>
+    </div>
+    <div class="footer-col">
+      <h4>Mission</h4>
+      <a href="#">Über uns</a>
+      <a href="#">Impact Report</a>
+      <a href="#">Partner</a>
+      <a href="#">Blog</a>
+    </div>
+    <div class="footer-col">
+      <h4>Hilfe</h4>
+      <a href="#">Versand & Rückgabe</a>
+      <a href="#">Größentabelle</a>
+      <a href="#">FAQ</a>
+      <a href="#">Kontakt</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 SW CLIMATE HERO · Alle Rechte vorbehalten · Made with 💚 for the Planet
+  </div>
+</footer>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+document.addEventListener('mousedown', () => cursor.classList.add('click'));
+document.addEventListener('mouseup', () => cursor.classList.remove('click'));
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// Toast
+let cartCount = 0;
+function addCart() {
+  cartCount++;
+  document.querySelector('.nav-cart').textContent = `🛒 Warenkorb (${cartCount})`;
+  showToast('✓ IN DEN WARENKORB!');
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2200);
+}
+
+// Animate on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: .12 });
+
+document.querySelectorAll('.product-card, .impact-card, .testimonial').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = 'opacity .55s ease, transform .55s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
